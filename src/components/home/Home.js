@@ -22,7 +22,7 @@ const Home = () => {
                 <h2>Key Features</h2>
                 <ul>
                     <li>User authentication and registration.</li>
-                    <li>Exercise logging with details like exercise type, duration, and date.</li>
+                    <li>Exercise logging with details like exercise type, duration, description and date.</li>
                 </ul>
             </div>
 
@@ -36,7 +36,7 @@ const Home = () => {
                     <li>React Router for handling navigation.</li>
                     <li>Node.js and Express.js for the backend server.</li>
                     <li>MongoDB for data storage.</li>
-                    <li>Bootstrap for styling.</li>
+                    <li>Bootstrap & CSS for styling.</li>
                     <li>JWT for authentication.</li>
                 </ul>
             </div>

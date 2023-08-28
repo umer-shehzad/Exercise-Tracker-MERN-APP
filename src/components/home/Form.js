@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const ExerciseForm = ({ closeModal, fetchData }) => {
+const ExerciseForm = ({ closeModal, fetchData, id }) => {
     const [ username, setUserName ] = useState('');
     const [ activityType, setActivity ] = useState('');
     const [ duration, setDuration ] = useState('');
@@ -24,6 +24,32 @@ const ExerciseForm = ({ closeModal, fetchData }) => {
             console.error(error);
         });
     }
+
+    // get single info call
+    const singleGetCall = async (id) => {
+        try{
+            const response = await axios.get(`http://localhost:9000/info/get-single/${id}`)
+            if (response.status === 200){
+                console.log(response.data);
+                 // Format the date here to match "yyyy-MM-dd"
+                const apiDate = new Date(response.data.date);
+                const formattedDate = apiDate.toISOString().split('T')[0];
+
+                setUserName(response.data.username);
+                setDuration(response.data.duration);
+                setDescription(response.data.description);
+                setDate(formattedDate);
+                setActivity(response.data.activityType);
+            }
+        }
+        catch (err) {
+            console.log('singleGetCall is not working.');
+        }
+    }
+
+    useEffect(() => {
+        singleGetCall(id);
+    }, []);
 
     return(
         <div>

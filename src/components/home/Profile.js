@@ -57,6 +57,7 @@ const Profile = () => {
         }
     };
 
+
     useEffect(() => {
         fetchDataFromAPI();
     }, []);

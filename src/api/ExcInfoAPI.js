@@ -91,4 +91,13 @@ app.get('/get-single/:id', async (req, res) => {
   }
 });
 
+app.put('/update/:id', async (req, res) => {
+  const id = req.params.id;
+  const data = await ExcInfoModel.updateOne(
+    { _id : id },
+    { $set : req.body }
+  )
+  res.send(data);
+});
+
 module.exports = app;

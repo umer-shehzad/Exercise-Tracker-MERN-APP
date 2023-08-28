@@ -80,18 +80,15 @@ app.delete('/delete/:id', (req, res) => {
       })
 });
 
-// app.put('/update', (req, res) => {
-//     const { username } = req.body;
-//     PostModel.updateMany({username:username}, { $set: { username: "Umer" } })
-//     .then(() => {
-//         PostModel.find({})
-//         .then((result) => {
-//             res.send(responseBuilder({
-//               message: "Data updated",
-//               posts: result
-//             }));
-//           });
-//     });
-// });
+app.get('/get-single/:id', async (req, res) => {
+  // get single card info against id
+  const id = req.params.id;
+  const data = await ExcInfoModel.findOne({ _id:id });
+  if (data){
+    res.send(data);
+  }else {
+    res.status(404).send({ result : "No record found" })
+  }
+});
 
 module.exports = app;
